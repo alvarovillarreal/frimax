@@ -13,7 +13,7 @@ function nuevoAjax(){
     try {    
         xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
     } catch (e) {
-     try {
+       try {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     } catch (E) {
         xmlhttp = false;
@@ -21,7 +21,7 @@ function nuevoAjax(){
 }
 
 if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
- xmlhttp = new XMLHttpRequest();
+   xmlhttp = new XMLHttpRequest();
 }
 return xmlhttp;
 }
@@ -34,10 +34,10 @@ $(document).ready(function(){
     for(var i=0; i<elementosDelForm.length;i++) {
         if (elementosDelForm[i].type == 'radio') {
 
-         elementosDelForm[i].addEventListener("click", actualizarDatos);
+           elementosDelForm[i].addEventListener("click", actualizarDatos);
 
-     }
- }
+       }
+   }
 });
 
 function actualizarDatos() {
@@ -474,11 +474,11 @@ $("#showPerfil").click(function(){
 });
 //Funcion para ocutar los formularios de edicion y de nuevo de las listas
 $(".hideForms").click(function(){
- $("#formNUser").css("display","none");
- $("#formEPerfil").css("display","none"); 
- $("#formEUser").css("display","none"); 
- $("#totalclientes").css("display","block");
- document.getElementById("pintarFirma1").innerHTML = " "; 
+   $("#formNUser").css("display","none");
+   $("#formEPerfil").css("display","none"); 
+   $("#formEUser").css("display","none"); 
+   $("#totalclientes").css("display","block");
+   document.getElementById("pintarFirma1").innerHTML = " "; 
 
 });
 //Funcion para mostrar el fomulario y llenarlo con la informacion correspondiente a la lista seleccionada
@@ -1471,6 +1471,19 @@ function editRecepcion(elemento, id){
             tablero = valores[26] == "1" ? "#eaire_1" : "#eaire_2";
             $(tablero).attr("checked", true);/**/  
 
+            $("#rodado").val(valores[27]);   
+            $("#lCarrozable").val(valores[28]);   
+            $("#aPLarguero").val(valores[29]);   
+            $("#aLarguero").val(valores[30]);   
+            $("#alturaLar").val(valores[31]);   
+            $("#pLarguero").val(valores[32]);   
+            $("#altCabina").val(valores[33]);   
+            $("#dEjes").val(valores[34]);   
+            $("#diCabCenEjeTras").val(valores[35]);   
+            $("#diCabCenEjeDelan").val(valores[36]);   
+            $("#volTras").val(valores[37]);   
+            $("#lTotalChas").val(valores[38]); 
+
             $("#linkPDF").attr("href", "downloadPDF.php?folio="+valores[1]);
             $("#linkPRV").attr("href", "downloadPRV.php?folio="+valores[1]);
             $("#linkIMG").attr("href", "verImagenes.php?folio="+valores[1]);
@@ -1704,14 +1717,25 @@ $("#updRecepcion").click(function(){
             "telefonoRecibe": $("#telefonoRecibe").val(),
             "proceso"       :  $("#proceso").val(),
             "fechaEntrega"  :  $("#fechaEntrega").val(),
-            "func"          : "updRecepcion",
+            "rodado"        : $("#rodado").val(),
+            "lCarrozable"   : $("#lCarrozable").val(),
+            "aPLarguero"    : $("#aPLarguero").val(),
+            "aLarguero"     : $("#aLarguero").val(),
+            "alturaLar"     : $("#alturaLar").val(),
+            "pLarguero"     : $("#pLarguero").val(),
+            "altCabina"     : $("#altCabina").val(),
+            "dEjes"         : $("#dEjes").val(),
+            "diCabCenEjeTras"   : $("#diCabCenEjeTras").val(),
+            "diCabCenEjeDelan"  : $("#diCabCenEjeDelan").val(),
+            "volTras"       : $("#volTras").val(),
+            "lTotalChas"    : $("#lTotalChas").val(),
+            "func"          : "updRecepcion",           
             "adic"          :  adic,
             "access"        :  access,
             "cantiad"       :  acount,
             "accesorios"    :  acc
         },
-        success: function(data) {
-            console.log(data);
+        success: function(data) {            
             id = data == 1 ? "#exito" : "#error";
             $(id).css("display","block");
             //setTimeout(function(){location.reload();},5000)

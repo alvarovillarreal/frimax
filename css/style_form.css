@@ -208,6 +208,19 @@ input[type=number]
   height: 50%;
 
 }
+.form-inline .form-group{
+  display: block;
+  margin-bottom: 15px;
+}
+.form-group .input-group{
+ border-radius: 4px !important;
+ display: flex !important;
+}
+
+.input-group .input-group-addon {
+ border: 1px solid #ccc;
+ background-color: #eee;
+}
 
 
 

@@ -570,7 +570,7 @@ class submit extends MySQL{
     	}  	
 
     	$consulta_control_recibe = "UPDATE controlRecibe SET usuarioRecibe = '$responsable', motivoRecibe = '$sucursal', asesorComercial = '$aresponsable', idCliente = '$cliente' $comaTerminado $sql_fecha_terminado $comaRecibe $sql_nombre_recibe $comaRecibe_intermedio $sql_firma_recibe  $coma $sql_proceso $coma_intermedia $sql_fecha_entrega $comaTelefono $sql_telefono_recibe WHERE id = $id";
- 
+
     	$upd = parent::query($consulta_control_recibe);
 
     	$updIns = parent::query('UPDATE controlVehiculo SET noPedido = "'.$nopedido.'", noOperacion = "'.$nooperacion.'", noSerie = "'.$noserie.'", chasis = "'.$chasis.'", modelo = "'.$modelo.'", anio = "'.$anio.'", placa = "'.$placa.'" WHERE idControlRecibe = "'.$id.'"');
@@ -604,6 +604,8 @@ class submit extends MySQL{
     	}
 
     	$ins = parent::query('UPDATE controlAdicional SET kilometraje = "'.$kilometraje.'", combustible = "'.$combustible.'",  volts = "'.$volts.'", otro = "'.$otro.'", observaciones = "'.$observaciones.'" WHERE id = "'.$id.'"');
+
+    	$actual = parent::query('UPDATE controlchasis SET rodado = "'.$rodado.'", lCarrozable = "'.$lCarrozable.'",  aPLarguero = "'.$aPLarguero.'", aLarguero = "'.$aLarguero.'", alturaLar = "'.$alturaLar.'", pLarguero = "'.$pLarguero.'", altCabina = "'.$altCabina.'", dEjes = "'.$dEjes.'", diCabCenEjeTras = "'.$diCabCenEjeTras.'", diCabCenEjeDelan = "'.$diCabCenEjeDelan.'", volTras = "'.$volTras.'", lTotalChas = "'.$lTotalChas.'" WHERE idControlRecibe = "'.$id.'"');
 
     	return 1;
     }
@@ -644,13 +646,14 @@ class submit extends MySQL{
 	}
 	public function editRecepcion($id){
 		$sql = parent::fetch_array(parent::query('
-			SELECT controlRecibe.fecha, controlRecibe.folio, controlRecibe.usuarioEntrega, controlRecibe.responsableTelefono,controlRecibe.firmaEntrega, controlRecibe.fechaTerminado, controlVehiculo.noPedido, controlVehiculo.noOperacion, controlVehiculo.noSerie, controlVehiculo.chasis, controlVehiculo.modelo, controlVehiculo.anio, controlVehiculo.placa, controlAdicional.tablero, controlAdicional.alarma, controlAdicional.reversa, controlAdicional.kilometraje, controlAdicional.volts,controlAdicional.carga,controlAdicional.aire, controlAdicional.otro, controlAdicional.observaciones, controlRecibe.idCliente, in_clientes.nombre, CONCAT(userRecibe.nombre, " ", userRecibe.paterno," ",userRecibe.materno) AS usuarioRec, controlRecibe.motivoRecibe, controlRecibe.usuarioRecibe, in_estatus.nombre AS nombreEstatus
+			SELECT controlRecibe.fecha, controlRecibe.folio, controlRecibe.usuarioEntrega, controlRecibe.responsableTelefono,controlRecibe.firmaEntrega, controlRecibe.fechaTerminado, controlVehiculo.noPedido, controlVehiculo.noOperacion, controlVehiculo.noSerie, controlVehiculo.chasis, controlVehiculo.modelo, controlVehiculo.anio, controlVehiculo.placa, controlAdicional.tablero, controlAdicional.alarma, controlAdicional.reversa, controlAdicional.kilometraje, controlAdicional.volts,controlAdicional.carga,controlAdicional.aire, controlAdicional.otro, controlAdicional.observaciones, controlRecibe.idCliente, in_clientes.nombre, CONCAT(userRecibe.nombre, " ", userRecibe.paterno," ",userRecibe.materno) AS usuarioRec, controlRecibe.motivoRecibe, controlRecibe.usuarioRecibe, in_estatus.nombre AS nombreEstatus, controlchasis.rodado, controlchasis.lCarrozable, controlchasis.aPLarguero, controlchasis.aLarguero, controlchasis.alturaLar, controlchasis.pLarguero, controlchasis.altCabina, controlchasis.dEjes, controlchasis.diCabCenEjeTras, controlchasis.diCabCenEjeDelan, controlchasis.volTras, controlchasis.lTotalChas
 			FROM controlRecibe
 			LEFT JOIN controlAdicional ON controlAdicional.idControlRecibe = controlRecibe.id
 			LEFT JOIN controlVehiculo ON controlVehiculo.idControlRecibe = controlRecibe.id
 			LEFT JOIN in_clientes ON in_clientes.id = controlRecibe.idCliente
 			INNER JOIN usuarios AS userRecibe ON userRecibe.id = controlRecibe.usuarioRecibe
 			LEFT JOIN in_estatus ON in_estatus.id = controlRecibe.proceso 
+			LEFT JOIN controlchasis ON controlchasis.idControlRecibe = controlRecibe.id
 			WHERE controlRecibe.id = "'.$id.'"'));
 
 
@@ -681,8 +684,19 @@ class submit extends MySQL{
 		$sql['responsableTelefono']."::". //23	
 		$sql['volts']."::".		//24
 		$sql['carga']."::".		//25
-		$sql['aire'];		//26
-
+		$sql['aire']."::".		//26
+		$sql['rodado']."::". //27
+		$sql['lCarrozable']."::". //28
+		$sql['aPLarguero']."::". //29
+		$sql['aLarguero']."::". //30
+		$sql['alturaLar']."::". //31
+		$sql['pLarguero']."::". //32 
+		$sql['altCabina']."::". //33
+		$sql['dEjes']."::".  //34
+		$sql['diCabCenEjeTras']."::". //35
+		$sql['diCabCenEjeDelan']."::". //326
+		$sql['volTras']."::". //37
+		$sql['lTotalChas'];  //38
 	}
 	public function loadAccesorios($id){
 		$sql = parent::query('SELECT idEstatus, idAccesorio, cantidad FROM controlAccesorios WHERE idControlRecibe = "'.$id.'"');

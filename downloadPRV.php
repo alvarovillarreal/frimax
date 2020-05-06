@@ -26,8 +26,8 @@ class MYPDF extends TCPDF {
 		$this->SetFillColor(0, 50, 160);
 		$this->SetTextColor(255, 255, 255);
 		$this->SetFont('helvetica', '', 5);		
-		$image_file = 'https://frimax.mx/wp-content/uploads/2017/05/logo-frimax.png';
-		$this->Image($image_file, 10, 5, 30, '', 'PNG', 'https://frimax.mx', 'C', true, 300, 'M', false, false, 0, false, false, true);
+		$image_file = 'images/logo-frimax.png';
+		$this->Image($image_file, 0, 0, 40, '', 'PNG', 'https://frimax.mx', 'C', true, 300, 'M', false, false, 0, false, false, true);
 		$text='<span style="font-weight: bold;">FRIMAX MATRIZ</span><br/><small>Camino a Santa Cruz del Valle 121<br/>Colonia Valle de la Misericordia<br/>Tlaquepaque, Jalisco, México<br/>Teléfono:3336011808<small>';
 		$text2='<span style="font-weight: bold;">FRIMAX MÉXICO</span><br/><small>Camino a Santa Cruz del Valle 121<br/>Colonia Valle de la Misericordia<br/>Tlaquepaque, Jalisco, México<br/>Teléfono:3336011808<small>';
 		$text3='<span style="font-weight: bold;">FRIMAX PACÍFICO</span><br/><small>Camino a Santa Cruz del Valle 121<br/>Colonia Valle de la Misericordia<br/>Tlaquepaque, Jalisco, México<br/>Teléfono:3336011808<small>';
@@ -70,7 +70,7 @@ class MYPDF extends TCPDF {
 		$this->SetFillColor(0, 50, 160);
 		$this->SetTextColor(255, 255, 255);
 		$this->SetFont('helvetica', '', 5);		
-		$image_file = 'https://frimax.mx/wp-content/uploads/2017/05/logo-frimax.png';
+		$image_file = 'images/logo-frimax.png';
 		$this->Image($image_file, 10, 5, 30, '', 'PNG', 'https://frimax.mx', 'C', true, 300, 'M', false, false, 0, false, false, true);
 		$text='<span style="font-weight: bold;">FRIMAX MATRIZ</span><br/><small>Camino a Santa Cruz del Valle 121<br/>Colonia Valle de la Misericordia<br/>Tlaquepaque, Jalisco, México<br/>Teléfono:3336011808<small>';
 		$text2='<span style="font-weight: bold;">FRIMAX MÉXICO</span><br/><small>Camino a Santa Cruz del Valle 121<br/>Colonia Valle de la Misericordia<br/>Tlaquepaque, Jalisco, México<br/>Teléfono:3336011808<small>';
@@ -227,6 +227,14 @@ class MYPDF extends TCPDF {
 
 		$imgdata6 = $this->info['asientos'];			
 		$this->Image($imgdata6, 47, 192, 32, 32, '', '', '', false, 300, '', false, false, 0);
+	}
+
+	public function linkChasis(){
+		$html='<a href="chasisPDF.php?folio='.$this->info['folio'].'" target="_blank">Ver medidas del chasis</a>';
+		$this->SetFont('helvetica', 'B', 10);
+		$this->SetFillColor(0, 50, 160);	
+		$this->SetTextColor(108, 192, 115);
+		$this->writeHTMLCell(75, 0, 15, 220, $html, 0, 1, 0, true, '', true);		
 	}
 
 	/*BEGIN: Métodos para mostrar la lista de accesorios*/
@@ -794,6 +802,7 @@ $pdf->SetFont('Times','',12);
 $pdf->informacion();
 $pdf->accesorios();
 $pdf->anomalias();
+$pdf->linkChasis();
 $pdf->inferior();
 $pdf->firmas();
 $pdf->telefonos();
