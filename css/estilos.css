@@ -29,7 +29,7 @@
     background-color: #fff;
 }
 .contenido{
- height: 2000px;
+   height: 2000px;
 }
 
 .contenedor-imagenes{
@@ -55,6 +55,10 @@
 }
 
 @media screen and (max-width: 900px) {
+    .tabs {
+        margin: 0 10% 0 20%;
+    }
+
     .fondo-blanco{
         width: 100%;
     }

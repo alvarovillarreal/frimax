@@ -435,7 +435,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Largo Carrozable</label></div>
@@ -445,7 +445,7 @@ class recepcion extends pagina{
         </div> 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Altura a piso a Larguero</label></div>
@@ -455,7 +455,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Apertura de Largueros</label></div>        
@@ -465,7 +465,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"> <label>Altura de Larguero</label></div>           
@@ -475,7 +475,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Peralte de Larguero</label></div>
@@ -485,7 +485,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Altura Larguero a techo Cabina</label></div>    
@@ -496,7 +496,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Distancia entre ejes</label></div>    
@@ -507,7 +507,7 @@ class recepcion extends pagina{
         </div>
         </div>  
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Distancia de cabina a Centro de Eje Trasero</label></div>    
@@ -518,7 +518,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="form-group">
         <div class="input-group">
         <div class="input-group-addon"><label>Distancia de cabina a Centro de Eje Delantero</label></div>    
@@ -529,7 +529,7 @@ class recepcion extends pagina{
         </div>
         </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><label>Volado trasero</label></div>    
@@ -540,7 +540,7 @@ class recepcion extends pagina{
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-12 col-md-12 col-lg-6">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><label class="control-label">Largo total de chasis</label></div>    

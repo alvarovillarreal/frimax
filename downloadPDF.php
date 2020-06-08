@@ -468,7 +468,7 @@ class MYPDF extends TCPDF {
     	date_default_timezone_set("America/Mexico_City");
     	$this->local = FALSE;
     	$this->folio = $_GET['folio'];
-    	$this->esquema = 'local';
+    	$this->esquema = 'productivo';
     	if($this->esquema == 'local'){
     		$this->user  		= 'root';
     		$this->password 	= '';

@@ -14,7 +14,6 @@ class MYPDF extends TCPDF {
 	}
 
 
-
 	public function setImagen(){
 		// get the current page break margin
 		$bMargin = $this->getBreakMargin();
@@ -23,7 +22,7 @@ class MYPDF extends TCPDF {
         // disable auto-page-break
 		$this->SetAutoPageBreak(false, 0);
         // set bacground image
-		$img_file =$this->info['rodado'] == 1 ? K_PATH_IMAGES.'Dimensiones_Chasis.jpg' : K_PATH_IMAGES.'Dimensiones_Chasis_02.jpg' ;
+		$img_file =$this->info['rodado'] == 1 ? './images/Dimensiones_Chasis.jpg' : './images/Dimensiones_Chasis_02.jpg' ;
 		$this->Image($img_file, 0, 0, 300, 200 , '', '', '', false, 300, '', false, false, 0);
         // restore auto-page-break status
 		$this->SetAutoPageBreak($auto_page_break, $bMargin);
@@ -51,7 +50,7 @@ class MYPDF extends TCPDF {
 	}
 	private function folio(){
 
-		$this->writeHTMLCell(40, 0, 242, 130, $this->folio, 0, 1, 0, true, '', true);
+		$this->writeHTMLCell(40, 0, 242, 130, $this->info['noPedido'], 0, 1, 0, true, '', true);
 	}
 	
 	private function dimensionesChasis(){
@@ -86,7 +85,7 @@ class MYPDF extends TCPDF {
 		date_default_timezone_set("America/Mexico_City");
 		$this->local = FALSE;
 		$this->folio = $_GET['folio'];
-		$this->esquema = 'local';
+		$this->esquema = 'productivo';
 		if($this->esquema == 'local'){
 			$this->user  		= 'root';
 			$this->password 	= '';
@@ -112,7 +111,7 @@ class MYPDF extends TCPDF {
 		$this->link = mysqli_connect($this->server,$this->user, $this->password) or die(mysql_error());
 		mysqli_select_db( $this->link, $this->database) or die($this->link->error);
 
-		$this->info = mysqli_fetch_array($this->link->query('SELECT controlRecibe.id, controlRecibe.fecha, controlRecibe.folio, in_clientes.nombre, controlchasis.rodado , controlchasis.lCarrozable, controlchasis.aPLarguero, controlchasis.aLarguero, controlchasis.alturaLar, controlchasis.pLarguero, controlchasis.altCabina, controlchasis.dEjes, controlchasis.diCabCenEjeTras, controlchasis.diCabCenEjeDelan, controlchasis.volTras, controlchasis.lTotalChas FROM controlRecibe LEFT JOIN controlchasis ON controlchasis.idControlRecibe = controlRecibe.id LEFT JOIN in_clientes ON in_clientes.id = controlRecibe.idCliente WHERE controlRecibe.folio = "'.$this->folio.'"'));
+		$this->info = mysqli_fetch_array($this->link->query('SELECT controlRecibe.id, controlRecibe.fecha, controlRecibe.folio,  controlVehiculo.noPedido, in_clientes.nombre, controlchasis.rodado , controlchasis.lCarrozable, controlchasis.aPLarguero, controlchasis.aLarguero, controlchasis.alturaLar, controlchasis.pLarguero, controlchasis.altCabina, controlchasis.dEjes, controlchasis.diCabCenEjeTras, controlchasis.diCabCenEjeDelan, controlchasis.volTras, controlchasis.lTotalChas FROM controlRecibe LEFT JOIN controlchasis ON controlchasis.idControlRecibe = controlRecibe.id LEFT JOIN controlVehiculo ON controlVehiculo.idControlRecibe = controlRecibe.id LEFT JOIN in_clientes ON in_clientes.id = controlRecibe.idCliente WHERE controlRecibe.folio = "'.$this->folio.'"'));
 
 		$this->separaFecha($this->info['fecha']);
 		

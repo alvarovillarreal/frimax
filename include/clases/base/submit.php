@@ -395,6 +395,8 @@ class submit extends MySQL{
 
     			$ins = parent::query('INSERT INTO in_folios (consecutivo, idSucursal, folio) VALUES ("'.$cons.'", "'.$suc['sucursal'].'", "'.$folio.'")');
 
+    			$ins = parent::query('INSERT INTO controlchasis (idControlRecibe) VALUES ("'.$lastID['id'].'")');
+
     			$ins = parent::query('INSERT INTO controlVehiculo (idControlRecibe, noPedido, noOperacion, noSerie, chasis, modelo, anio, placa) VALUES ("'.$lastID['id'].'", "'.$nopedido.'", "'.$nooperacion.'", "'.$noserie.'", "'.$chasis.'", "'.$modelo.'", "'.$anio.'", "'.$placa.'")');
 
     			$ins = parent::query('INSERT INTO controlanomalias (idRecibe, frente, arriba,ladoIzq,ladoDer,panel,asientos) VALUES ("'.$lastID['id'].'","'.$imagenCanvasFrente.'","'.$imagenCanvasArriba.'","'.$imagenCanvasIzq.'","'.$imagenCanvasDer.'","'.$imagenCanvasInterior.'","'.$imagenCanvasSeat.'")');
